@@ -44,6 +44,11 @@ async def on_ready():
 
 # ===== Bot Commands =====
 
+@bot.command()
+async def ping(ctx: commands.Context):
+    """Check the bot's latency."""
+    await ctx.reply(f"Pong!\n`{round(bot.latency * 1000)}ms`")
+
 
 # ===== Run Diorite =====
 
