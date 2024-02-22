@@ -50,6 +50,15 @@ async def ping(ctx: commands.Context):
     await ctx.reply(f"Pong!\n`{round(bot.latency * 1000)}ms`")
 
 
+@bot.command()
+@commands.is_owner()
+async def reboot(ctx: commands.Context):
+    """Reboot the bot."""
+    await ctx.reply("Alright! Rebooting now!")
+    await bot.close()
+    os.system("sudo reboot")
+
+
 # ===== Run Diorite =====
 
 async def main():
