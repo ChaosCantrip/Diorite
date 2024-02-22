@@ -59,6 +59,15 @@ async def reboot(ctx: commands.Context):
     os.system("sudo reboot")
 
 
+@bot.command()
+@commands.is_owner()
+async def restart(ctx: commands.Context):
+    """Restart the bot."""
+    await ctx.reply("Alright! Restarting now!")
+    await bot.close()
+    # Restarting the bot is handled by the launcher script
+
+
 # ===== Run Diorite =====
 
 async def main():
