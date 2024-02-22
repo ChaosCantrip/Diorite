@@ -1,12 +1,22 @@
 import asyncio
 import os
 from datetime import datetime
+import colorama
 
 import discord
 from discord.ext import commands
 
+# ===== Setup =====
+
+# Set up colorama
+colorama.init(autoreset=True)
+
+# Set up the bot
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="$", intents=intents, case_insensitive=True)
+
+
+# ===== Bot Events =====
 
 
 @bot.event
@@ -14,7 +24,9 @@ async def on_ready():
     """Runs when the bot is ready."""
 
     # Print a message to the console
-    print(f"Logged in as {bot.user.name} ({bot.user.id})")
+    print(colorama.Fore.GREEN + colorama.Style.BRIGHT + f"\n{bot.user.display_name} connected to Discord")
+    print(colorama.Fore.MAGENTA + colorama.Style.BRIGHT + f"- Account: {bot.user}")
+    print(colorama.Fore.MAGENTA + colorama.Style.BRIGHT + f"- User ID: {bot.user.id}")
 
     # Create an embed to send to the bot owner
     embed = discord.Embed(
@@ -30,7 +42,13 @@ async def on_ready():
     await owner.send(embed=embed)
 
 
+# ===== Bot Commands =====
+
+
+# ===== Run Diorite =====
+
 async def main():
+    print(colorama.Fore.YELLOW + "Initialising Diorite...")
     async with bot:
         await bot.start(os.environ.get("DISCORD_TOKEN"))
 
