@@ -74,6 +74,15 @@ async def restart(ctx: commands.Context):
     # Restarting the bot is handled by the launcher script
 
 
+@bot.command()
+@commands.is_owner()
+async def maintenance(ctx: commands.Context):
+    """Put the bot into maintenance mode."""
+    await ctx.reply("Alright! Putting the bot into maintenance mode now!")
+    await bot.close()
+    # The launcher script will automatically restart the bot in maintenance mode if no other flags are present
+
+
 # ===== Run Diorite =====
 
 async def main():
