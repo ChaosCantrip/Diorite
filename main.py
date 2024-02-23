@@ -52,8 +52,11 @@ async def ping(ctx: commands.Context):
 
 @bot.command()
 @commands.is_owner()
-async def reboot(ctx: commands.Context):
+async def reboot(ctx: commands.Context, with_pull: bool = True):
     """Reboot the bot."""
+    # Pull the latest commits from the repository if needed
+    if with_pull:
+        await ctx.invoke(bot.get_command("pull"))
     await ctx.reply("Alright! Rebooting now!")
     # Create flag file to signal the launcher script to reboot the bot
     with open("reboot", "w+") as f:
@@ -64,8 +67,11 @@ async def reboot(ctx: commands.Context):
 
 @bot.command()
 @commands.is_owner()
-async def restart(ctx: commands.Context):
+async def restart(ctx: commands.Context, with_pull: bool = True):
     """Restart the bot."""
+    # Pull the latest commits from the repository if needed
+    if with_pull:
+        await ctx.invoke(bot.get_command("pull"))
     await ctx.reply("Alright! Restarting now!")
     # Create flag file to signal the launcher script to restart the bot
     with open("restart", "w+") as f:
