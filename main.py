@@ -83,6 +83,19 @@ async def maintenance(ctx: commands.Context):
     # The launcher script will automatically restart the bot in maintenance mode if no other flags are present
 
 
+@bot.command()
+@commands.is_owner()
+async def pull(ctx: commands.Context):
+    """Pull the latest commits from the repository."""
+    # Reply to acknowledge the command
+    message_text = "Pulling latest commits..."
+    message = await ctx.reply(f"```{message_text}```")
+
+    # Run the git pull command and send the output
+    message_text += "\n\n" + os.popen("git pull").read()[0:3000]
+    await message.edit(content=f"```{message_text}```")
+
+
 # ===== Run Diorite =====
 
 async def main():
