@@ -55,11 +55,11 @@ async def ping(ctx: commands.Context):
 async def reboot(ctx: commands.Context):
     """Reboot the bot."""
     await ctx.reply("Alright! Rebooting now!")
-    await bot.close()
     # Create flag file to signal the launcher script to reboot the bot
     with open("reboot", "w+") as f:
         f.write("")
     # Rebooting the bot is handled by the launcher script
+    await bot.close()
 
 
 @bot.command()
@@ -67,11 +67,11 @@ async def reboot(ctx: commands.Context):
 async def restart(ctx: commands.Context):
     """Restart the bot."""
     await ctx.reply("Alright! Restarting now!")
-    await bot.close()
     # Create flag file to signal the launcher script to restart the bot
     with open("restart", "w+") as f:
         f.write("")
     # Restarting the bot is handled by the launcher script
+    await bot.close()
 
 
 @bot.command()
@@ -79,8 +79,8 @@ async def restart(ctx: commands.Context):
 async def maintenance(ctx: commands.Context):
     """Put the bot into maintenance mode."""
     await ctx.reply("Alright! Putting the bot into maintenance mode now!")
-    await bot.close()
     # The launcher script will automatically restart the bot in maintenance mode if no other flags are present
+    await bot.close()
 
 
 @bot.command()
