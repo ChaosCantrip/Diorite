@@ -8,3 +8,21 @@ class Member:
     def __init__(self, data: dict):
         self.id: int = data["id"]
         self.balance: int = data["balance"]
+
+    # ===== Class Methods =====
+
+    @classmethod
+    def get(cls, member_id: int, create: bool = True) -> Self:
+        """
+        Get a member by their ID.
+
+        :param member_id: ID of the member to get.
+        :param create: Whether to create the member if they don't exist.
+        :return: The member with the given ID.
+        """
+        if member_id in cls._dict:
+            return cls._dict[member_id]
+        elif create:
+            return cls._create(member_id)
+        else:
+            raise ValueError(f"Member {member_id} not found.")
