@@ -26,3 +26,16 @@ class Member:
             return cls._create(member_id)
         else:
             raise ValueError(f"Member {member_id} not found.")
+
+    @classmethod
+    def _create(cls, member_id: int) -> Self:
+        """
+        Create a new member.
+
+        :param member_id: ID of the member to create.
+        :return: The new member.
+        """
+        member = cls({"id": member_id, "balance": 0})
+        cls._list.append(member)
+        cls._dict[member_id] = member
+        return member
