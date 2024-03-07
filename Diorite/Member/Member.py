@@ -9,6 +9,12 @@ class Member:
         self.id: int = data["id"]
         self.balance: int = data["balance"]
 
+    # ===== Instance Methods =====
+
+    def save(self):
+        """Save the member's data to the database."""
+        pass
+
     # ===== Class Methods =====
 
     @classmethod
