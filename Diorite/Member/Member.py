@@ -7,13 +7,28 @@ class Member:
 
     def __init__(self, data: dict):
         self.id: int = data["id"]
-        self.balance: int = data["balance"]
+        self._balance: int = data["balance"]
 
     # ===== Instance Methods =====
 
     def save(self):
         """Save the member's data to the database."""
         pass
+
+    # ===== Properties =====
+
+    @property
+    def balance(self) -> int:
+        """Get the member's balance."""
+        return self._balance
+
+    @balance.setter
+    def balance(self, value: int):
+        """Set the member's balance."""
+        if value < 0:
+            raise ValueError("Balance cannot be negative.")
+        self._balance = value
+        self.save()
 
     # ===== Class Methods =====
 
