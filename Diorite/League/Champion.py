@@ -1,4 +1,4 @@
-from Diorite.League import Skin
+from . import Skin
 from typing import Self
 import json
 import os
