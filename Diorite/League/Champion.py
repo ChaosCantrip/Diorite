@@ -22,6 +22,9 @@ class Champion:
         self.image_url: str = r"https://ddragon.leagueoflegends.com/cdn/14.5.1/data/en_US/champion/" + data["id"] + ".png"
         self.skins: list[Skin] = [Skin(skin) for skin in data["skins"]]
 
+    def __repr__(self):
+        return f"<Champion {self.key}: {self.name}>"
+
     @classmethod
     def get(cls, champion_id: str) -> Self:
         champion_id = champion_id.lower()
