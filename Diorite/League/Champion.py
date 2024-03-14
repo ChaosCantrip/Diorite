@@ -41,15 +41,10 @@ class Champion:
             if filename.endswith(".json"):
                 with open(f"{CHAMPIONS_FOLDER_PATH}/{filename}", "r") as f:
                     data = json.load(f)
-                    champion = cls(data["data"])
+                    champion_id = list(data["data"].keys())[0]
+                    champion = cls(data["data"][champion_id])
                     cls.champions.append(champion)
                     cls.champions_dict[champion.id.lower()] = champion
 
 
-
 Champion.load_champions()
-print("Here")
-for champion in Champion.champions:
-    print(champion)
-    for skin in champion.skins:
-        print("\t" + skin)
