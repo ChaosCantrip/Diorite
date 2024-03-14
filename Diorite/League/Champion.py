@@ -16,6 +16,7 @@ class Champion:
 
     @classmethod
     def get(cls, champion_id: str) -> Self:
+        champion_id = champion_id.lower()
         if champion_id in cls.champions_dict:
             return cls.champions_dict[champion_id]
         else:
