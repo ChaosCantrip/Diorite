@@ -37,10 +37,19 @@ class Champion:
     def load_champions(cls) -> None:
         cls.champions.clear()
         cls.champions_dict.clear()
-        for filename in os.listdir("data/live/league/champions"):
+        for filename in os.listdir(CHAMPIONS_FOLDER_PATH):
             if filename.endswith(".json"):
-                with open(f"Diorite/League/champions/{filename}", "r") as f:
+                with open(f"{CHAMPIONS_FOLDER_PATH}/{filename}", "r") as f:
                     data = json.load(f)
-                    champion = cls(data)
+                    champion = cls(data["data"])
                     cls.champions.append(champion)
                     cls.champions_dict[champion.id.lower()] = champion
+
+
+
+Champion.load_champions()
+print("Here")
+for champion in Champion.champions:
+    print(champion)
+    for skin in champion.skins:
+        print("\t" + skin)
