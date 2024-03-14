@@ -117,6 +117,14 @@ async def pull(ctx: commands.Context):
 
 async def main():
     print(colorama.Fore.YELLOW + "Initialising Diorite...")
+
+    print(colorama.Fore.CYAN + colorama.Style.BRIGHT + "\nLoading Cogs...\n")
+    for filename in os.listdir("./cogs"):
+        if filename.endswith(".py"):
+            await bot.load_extension(f"cogs.{filename[:-3]}")
+    print(colorama.Fore.GREEN + colorama.Style.BRIGHT + f"\nFinished loading Cogs.")
+
+    print(colorama.Fore.CYAN + colorama.Style.BRIGHT + "\nStarting Bot...")
     async with bot:
         await bot.start(os.environ.get("DISCORD_TOKEN"))
 
