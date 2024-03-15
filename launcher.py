@@ -12,7 +12,7 @@ while True:
     elif os.path.exists("restart"):
         # Restart the bot
         os.remove("restart")
-        os.system("sudo python main.py")
+        os.system("sudo -E python main.py")
     else:
         # Enter maintenance mode
-        os.system("sudo python maintenance.py")
+        os.system("sudo -E python maintenance.py")
