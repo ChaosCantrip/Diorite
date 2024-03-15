@@ -7,4 +7,4 @@ class Skin:
         self.has_chromas: bool = data["chromas"]
 
     def __repr__(self):
-        return f"<Skin {self.num}: {self.name} {'(chromas)' if self.has_chromas else ""}>"
+        return f"<Skin {self.num}: {self.name} {'(chromas)' if self.has_chromas else ''}>"
