@@ -3,16 +3,16 @@ import os
 print("Starting Diorite Launcher Script")
 
 while True:
-    os.system("sudo git pull")
+    os.system("git pull")
 
     if os.path.exists("reboot"):
         # Reboot the bot
         os.remove("reboot")
-        os.system("sudo reboot")
+        os.system("reboot")
     elif os.path.exists("restart"):
         # Restart the bot
         os.remove("restart")
-        os.system("sudo python main.py")
+        os.system("python main.py")
     else:
         # Enter maintenance mode
-        os.system("sudo python maintenance.py")
+        os.system("python maintenance.py")
