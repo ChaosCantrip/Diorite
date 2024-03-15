@@ -94,24 +94,10 @@ async def maintenance(ctx: commands.Context):
 @commands.is_owner()
 async def pull(ctx: commands.Context):
     """Pull the latest commits from the repository."""
-    # Reply to acknowledge the command
-    await ctx.reply(f"`Pulling latest commits...`")
-
-    # Run the git pull command
-    command_text = os.popen("git pull").read()
-    command_lines = command_text.split("\n")
-
-    # Split the output into chunks of 3000 characters
-    command_messages: list[list[str]] = []
-    n = 0
-    for line in command_lines:
-        if sum(len(message) for message in command_messages[n]) + len(line) > 3000:
-            n += 1
-        command_messages[n].append(line)
-
-    # Send the output
-    for message in command_messages:
-        await ctx.send(f"```{message}```")
+    message_text = "Pulling latest commits..."
+    message = await ctx.reply(f"```{message_text}```")
+    message_text += "\n\n" + os.popen("git pull").read()[0:3000]
+    await message.edit(content=f"```{message_text}```")
 
 
 # ===== Run Diorite =====
